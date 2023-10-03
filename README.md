@@ -10,8 +10,9 @@ This GitHub Action provides an automated solution to a common issue with NBViewe
 
 To use this GitHub Action in your repository, first go to Settings -> Actions -> General -> Workflow Permissions. Then, scroll down to the permissions and set them to 'Read and write permissions'. Then you can add the following snippet as a step in your workflow file:
 
-```yaml - name: Update NBViewer Links
-uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.4
+```yaml 
+- name: Update NBViewer Links
+  uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.4
 ```
             
 
