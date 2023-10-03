@@ -1,0 +1,17 @@
+name: 'Update NBViewer Links'
+description: 'A GitHub Action to update NBViewer links in a README file.'
+author: 'KensingtonOscupant'
+inputs:
+  commit_email:
+    description: 'The email address to use for committing.'
+    required: false
+  commit_username:
+    description: 'The username to use for committing.'
+    required: false
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        git config --global user.email "${{ inputs.commit_email || 'github.actions@example.com' }}"
+        git config --global user.name "${{ inputs.commit_username || 'NBViewerLinkBot' }}"
+    - run: ./entrypoint.sh
