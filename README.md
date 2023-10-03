@@ -13,6 +13,10 @@ To use this GitHub Action in your repository, first go to Settings -> Actions ->
 ```yaml 
 - name: Update NBViewer Links
   uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.4
+  with:
+    file_path: 'file_path' # IMPORTANT! Set this path to the file where you would like to have the links changed
+    commit_email: 'your_email@example.com'  # Optional, no need to set this one
+    commit_username: 'YourUsername'         # Optional, no need to set this one
 ```
             
 
@@ -37,7 +41,7 @@ jobs:
     - name: Update NBViewer Links
       uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.4
       with:
-        file_path: 'file_path' # REQUIRED! path to the file where you would like to have the links changed, for the readme it would be 'README.md'
+        file_path: 'file_path' # IMPORTANT! path to the file where you would like to have the links changed, for the readme it would be 'README.md'
         commit_email: 'your_email@example.com'  # Optional, no need to set this one
         commit_username: 'YourUsername'         # Optional, no need to set this one
 
