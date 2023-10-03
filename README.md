@@ -29,7 +29,7 @@ jobs:
       with:
         commit_email: 'your_email@example.com'  # Optional, no need to set this one
         commit_username: 'YourUsername'         # Optional, no need to set this one
-          ```
+```
 
 In this example:  
   
