@@ -1,7 +1,7 @@
 name: 'Update NBViewer Links'
 
 description: >
-    A GitHub Action to update NBViewer links in a README file.
+    A GitHub Action to update NBViewer links in a specified file.
 
 author: 'KensingtonOscupant'
 
@@ -12,6 +12,9 @@ inputs:
   commit_username:
     description: 'The username to use for committing.'
     required: false
+  file_path:
+    description: 'The path to the file where you want to update the links.'
+    required: true
 
 runs:
   using: 'composite'
@@ -27,10 +30,10 @@ runs:
         # Get the latest commit hash
         latest_commit="$(git rev-parse main)"
 
-        # Update links in README to include the latest commit
-        sed -i "s|https://nbviewer.org/github/\([^/]\+\)/\([^/]\+\)/blob/\([^/]\+\)/\([^' ']\+\)|https://nbviewer.org/github/\1/\2/blob/${latest_commit}/\4|g" README.md
+        # Update links in the specified file to include the latest commit
+        sed -i "s|https://nbviewer.org/github/\([^/]\+\)/\([^/]\+\)/blob/\([^/]\+\)/\([^' ']\+\)|https://nbviewer.org/github/\1/\2/blob/${latest_commit}/\4|g" "${{ inputs.file_path }}"
 
         # Commit and push changes
-        git add README.md
+        git add "${{ inputs.file_path }}"
         git commit -m "Update NBViewer links to latest commit"
         git push
