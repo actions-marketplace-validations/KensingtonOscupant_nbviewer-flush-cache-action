@@ -1,6 +1,14 @@
 name: 'Update NBViewer Links'
-description: 'A GitHub Action to update NBViewer links in a README file.'
-author: 'KensingtonOscupant'
+
+description: >
+  This GitHub Action provides an automated solution to a common issue with NBViewer: 
+  NBViewer's cache delay. NBViewer, a web service for rendering Jupyter notebooks, often
+  caches content, causing delays in seeing the most recent changes. This action addresses
+  this problem by automatically updating NBViewer links in your README file to the latest
+  SHA-1 version.
+
+author: 'Your Name'
+
 inputs:
   commit_email:
     description: 'The email address to use for committing.'
@@ -8,10 +16,23 @@ inputs:
   commit_username:
     description: 'The username to use for committing.'
     required: false
+
 runs:
   using: 'composite'
   steps:
-    - run: |
+    - name: Configure Git
+      run: |
         git config --global user.email "${{ inputs.commit_email || 'github.actions@example.com' }}"
         git config --global user.name "${{ inputs.commit_username || 'NBViewerLinkBot' }}"
-    - run: ./entrypoint.sh
+    - name: Update Links in README
+      run: |
+        # Get the latest commit hash
+        latest_commit="$(git rev-parse main)"
+
+        # Update links in README to include the latest commit
+        sed -i "s|https://nbviewer.org/github/\([^/]\+\)/\([^/]\+\)/blob/\([^/]\+\)/\([^' ']\+\)|https://nbviewer.org/github/\1/\2/blob/${latest_commit}/\4|g" README.md
+
+        # Commit and push changes
+        git add README.md
+        git commit -m "Update NBViewer links to latest commit"
+        git push
