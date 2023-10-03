@@ -9,37 +9,26 @@ This GitHub Action provides an automated solution to a common issue with NBViewe
 To use this GitHub Action in your repository, you can add it as a step in your workflow file (e.g., `.github/workflows/main.yml`). Here's an example of how to use it:
 
 ```yaml
-name: Update NBViewer Links
+name: Update NBViewer Links Workflow
 
 on:
   push:
     branches:
-      - main
+      - main  # You can specify the branch you want to trigger this workflow on
 
 jobs:
   update_links:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # You can choose the appropriate runner
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Get Latest Commit Hash
-        id: commit
-        run: echo "::set-output name=commit::$(git rev-parse main)"
-
-      - run: |
-            git config --global user.email "github.actions@example.com"
-            git config --global user.name "NBViewerLinkBot"
-
-      - name: Update Links in README
-        run: |
-          # Use sed to update links in README to include the latest commit
-          latest_commit="${{ steps.commit.outputs.commit }}"
-          sed -i "s|https://nbviewer.org/github/\([^/]\+\)/\([^/]\+\)/blob/\([^/]\+\)/\([^' ']\+\)|https://nbviewer.org/github/\1/\2/blob/${latest_commit}/\4|g" README.md
-          git add README.md
-          git commit -m "Update links to latest commit"
-          git push
+    - name: Update NBViewer Links
+      uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.3
+      with:
+        commit_email: 'your_email@example.com'  # Optional, no need to set this one
+        commit_username: 'YourUsername'         # Optional, no need to set this one
           ```
 
 In this example:  
