@@ -3,6 +3,10 @@ name: 'Update NBViewer Links'
 description: >
     A GitHub Action to update NBViewer links in a README file.
 
+icon: 'arrow-up-circle'
+
+color: 'blue'
+
 author: 'Your Name'
 
 inputs:
