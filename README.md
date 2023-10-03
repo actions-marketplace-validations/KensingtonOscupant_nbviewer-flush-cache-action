@@ -25,10 +25,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Update NBViewer Links
-      uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.3
+      uses: KensingtonOscupant/nbviewer-flush-cache-action@v1.0.4
       with:
+        file_path: 'file_path' # REQUIRED! path to the file where you would like to have the links changed, for the readme it would be 'README.md'
         commit_email: 'your_email@example.com'  # Optional, no need to set this one
         commit_username: 'YourUsername'         # Optional, no need to set this one
+
 ```
 
 In this example:  
