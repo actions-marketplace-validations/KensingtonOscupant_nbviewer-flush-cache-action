@@ -48,4 +48,4 @@ In this example:
 - The action is triggered on each push to the main branch.
 - It checks out the repository, gets the latest commit hash, and then runs the action to update the NBViewer links.
 
-You need to set the file_path value, i.e. the file where you want the links changed. You can customize the commit_email and commit_username inputs as needed. If not provided, the action will use default values.
+**You need to set the file_path value, i.e. the file where you want the links changed**. You can customize the commit_email and commit_username inputs as needed. If not provided, the action will use default values.
