@@ -15,13 +15,14 @@ inputs:
 
 runs:
   using: 'composite'
-  shell: bash
   steps:
     - name: Configure Git
+      shell: bash
       run: |
         git config --global user.email "${{ inputs.commit_email || 'github.actions@example.com' }}"
         git config --global user.name "${{ inputs.commit_username || 'NBViewerLinkBot' }}"
     - name: Update Links in README
+      shell: bash
       run: |
         # Get the latest commit hash
         latest_commit="$(git rev-parse main)"
