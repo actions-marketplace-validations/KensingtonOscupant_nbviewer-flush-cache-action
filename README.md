@@ -28,11 +28,18 @@ jobs:
         id: commit
         run: echo "::set-output name=commit::$(git rev-parse main)"
 
-      - name: Update NBViewer Links
-        uses: {username}/{repository}/@v{version} # Replace with your username, repository, and version
-        with:
-          commit_email: 'your-email@example.com'   # Optional: Set the email for committing (default: github.actions@example.com)
-          commit_username: 'Your GitHub Username'  # Optional: Set the username for committing (default: NBViewerLinkBot)
+      - run: |
+            git config --global user.email "github.actions@example.com"
+            git config --global user.name "NBViewerLinkBot"
+
+      - name: Update Links in README
+        run: |
+          # Use sed to update links in README to include the latest commit
+          latest_commit="${{ steps.commit.outputs.commit }}"
+          sed -i "s|https://nbviewer.org/github/\([^/]\+\)/\([^/]\+\)/blob/\([^/]\+\)/\([^' ']\+\)|https://nbviewer.org/github/\1/\2/blob/${latest_commit}/\4|g" README.md
+          git add README.md
+          git commit -m "Update links to latest commit"
+          git push
           ```
 
 In this example:  
