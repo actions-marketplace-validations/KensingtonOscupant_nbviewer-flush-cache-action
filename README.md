@@ -2,7 +2,7 @@
 
 ## Overview
 
-This GitHub Action provides an automated solution to a common issue with NBViewer: NBViewer's cache delay. NBViewer, a web service for rendering Jupyter notebooks, often caches content, causing delays in seeing the most recent changes. This action addresses this problem by automatically updating NBViewer links in your README file to the latest SHA-1 version.
+This GitHub Action provides an automated solution to a common issue with NBViewer: NBViewer's cache delay. NBViewer, a web service for rendering Jupyter notebooks, often caches content, causing delays in seeing the most recent changes. This action addresses this problem by automatically updating NBViewer links in files of your repository to the latest SHA-1 version.
 
 *Note: Of course this only works for links in a repository on Github; if you use links to NBViewer elsewhere, this won't help you.*
 
